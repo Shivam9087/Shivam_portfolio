@@ -13,35 +13,40 @@ filters.forEach((filter) => {
 });
 
 
+
 document.querySelectorAll(".project-media").forEach((button) => {
   button.addEventListener("click", () => {
-    const project = button.closest(".project");
-    if (!project) return;
+    const card = button.closest(".project");
+    if (!card) return;
 
-    let video = project.querySelector(".inline-project-video");
+    let video = card.querySelector(".inline-project-video");
 
-    if (video) {
-      if (video.paused) {
-        video.play();
-      } else {
-        video.pause();
-      }
-      return;
+    if (!video) {
+      video = document.createElement("video");
+      video.className = "inline-project-video";
+      video.src = button.dataset.video;
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+
+      video.addEventListener("play", () => {
+        document.querySelectorAll(".inline-project-video").forEach((other) => {
+          if (other !== video) other.pause();
+        });
+      });
+
+      button.insertAdjacentElement("afterend", video);
+      button.style.display = "none";
     }
 
-    video = document.createElement("video");
-    video.className = "inline-project-video";
-    video.src = button.dataset.video;
-    video.controls = true;
-    video.playsInline = true;
-    video.preload = "metadata";
-
-    button.replaceWith(video);
-    video.play().catch(() => {
-      video.controls = true;
+    document.querySelectorAll(".inline-project-video").forEach((other) => {
+      if (other !== video) other.pause();
     });
+
+    video.play().catch(() => {});
   });
 });
+
 
 const frame = document.getElementById("videoFrame");
 const closeModal = () => {
