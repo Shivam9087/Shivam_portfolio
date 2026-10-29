@@ -50,7 +50,15 @@ h2 { font-size: clamp(42px, 4.5vw, 64px); line-height: 1.05; margin-bottom: 0; }
 .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 42px 24px; }
 .project { min-width: 0; }
 .project-featured { grid-column: 1 / -1; }
-.project-media { position: relative; width: 100%; aspect-ratio: 16/9; display: block; overflow: hidden; border: 0; padding: 0; background: #dce0df; cursor: pointer; text-align: left; }
+.project-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9/16;
+  display: block;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+}
 .project-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
 .project-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,rgba(0,0,0,.22),transparent 35%,rgba(0,0,0,.12)); }
 .project-media:hover img { transform: scale(1.035); }
