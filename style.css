@@ -47,9 +47,16 @@ h2 { font-size: clamp(42px, 4.5vw, 64px); line-height: 1.05; margin-bottom: 0; }
 .filter { border: 0; border-radius: 30px; background: transparent; padding: 11px 16px; color: var(--muted); cursor: pointer; font-size: 11px; }
 .filter:hover { color: var(--ink); }
 .filter.active { color: white; background: var(--ink); }
-.project-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 42px 24px; }
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
 .project { min-width: 0; }
-.project-featured { grid-column: 1 / -1; }
+.project-featured {
+  grid-column: auto;
+}
 .project-media {
   position: relative;
   width: 100%;
