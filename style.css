@@ -156,3 +156,17 @@ h2 { font-size: clamp(42px, 4.5vw, 64px); line-height: 1.05; margin-bottom: 0; }
 .project-media.is-playing .play-button {
   display: none;
 }
+
+
+.project-media,
+.inline-project-video {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+}
+
+.inline-project-video {
+  display: block;
+  object-fit: contain;
+  background: #000;
+  border: 0;
+}
