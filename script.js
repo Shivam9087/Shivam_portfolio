@@ -12,7 +12,37 @@ filters.forEach((filter) => {
   });
 });
 
-const modal = document.getElementById("videoModal");
+
+document.querySelectorAll(".project-media").forEach((button) => {
+  button.addEventListener("click", () => {
+    const project = button.closest(".project");
+    if (!project) return;
+
+    let video = project.querySelector(".inline-project-video");
+
+    if (video) {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+      return;
+    }
+
+    video = document.createElement("video");
+    video.className = "inline-project-video";
+    video.src = button.dataset.video;
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+
+    button.replaceWith(video);
+    video.play().catch(() => {
+      video.controls = true;
+    });
+  });
+});
+
 const frame = document.getElementById("videoFrame");
 const closeModal = () => {
   modal.classList.remove("open");
